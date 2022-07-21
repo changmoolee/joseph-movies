@@ -55,13 +55,24 @@ const SearchBox = () => {
     }
   };
 
+  const pressEnter = (event: any) => {
+    if (event.key === "Enter") {
+      handleClick();
+    }
+  };
+
   return (
     <Container>
       <Welcome>환영합니다.</Welcome>
       <Guide>영화 이름을 검색해보세요!</Guide>
       <SubContainer>
         <div>
-          <Search inputRef={inputRef} width="auto" placeholder="영화 검색" />
+          <Search
+            inputRef={inputRef}
+            width="auto"
+            placeholder="영화 검색"
+            onKeyUp={pressEnter}
+          />
         </div>
         <Button name="검색" padding="10px 20px" onClick={handleClick} />
       </SubContainer>
