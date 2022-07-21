@@ -20,6 +20,9 @@ const PosterImage = styled.img`
 
 const Description = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 20px;
 `;
 

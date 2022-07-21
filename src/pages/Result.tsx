@@ -6,6 +6,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useParams } from "react-router-dom";
 import SearchBox from "../components/SearchBox";
+import SkeletonContents from "../components/SkeletonContents";
+import { SkeletonUI } from "joseph-ui-kit";
 
 const ResultText = styled.div`
   padding: 20px;
@@ -31,15 +33,26 @@ const Result = () => {
 
   console.log(search);
 
-  return loading ? null : (
+  return (
     <>
       <Header />
       <SearchBox />
-      <ResultText>
-        <span style={{ fontStyle: "italic" }}>"{value}"</span> 검색 결과{" "}
-        {search.results.length}건의 영화
-      </ResultText>
-      <Contents data={search} />
+      {loading ? (
+        <ResultText>
+          <SkeletonUI>
+            <div style={{ width: "100px", height: "16px" }} />
+          </SkeletonUI>
+          <SkeletonUI>
+            <div style={{ width: "100px", height: "16px" }} />
+          </SkeletonUI>
+        </ResultText>
+      ) : (
+        <ResultText>
+          <span style={{ fontStyle: "italic" }}>"{value}"</span> 검색 결과{" "}
+          {search.results.length}건의 영화
+        </ResultText>
+      )}
+      {loading ? <SkeletonContents /> : <Contents data={search} />}
       <Footer />
     </>
   );

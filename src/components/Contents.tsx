@@ -16,6 +16,17 @@ const GridMovieImages = styled.div`
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
   box-sizing: border-box;
+  @media screen and (min-width: 1400px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  @media screen and (min-width: 1100px) and (max-width: 1400px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media screen and (min-width: 800px) and (max-width: 1100px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 const MovieImageContainer = styled.div`
@@ -32,6 +43,10 @@ const MovieImage = styled.img`
   border-radius: 10px;
   object-fit: cover;
   cursor: pointer;
+  @media screen and (max-width: 320px) {
+    width: 120px;
+    height: 180px;
+  }
 `;
 
 const NullImage = styled.img`
@@ -41,12 +56,19 @@ const NullImage = styled.img`
   background-color: gray;
   object-fit: contain;
   cursor: pointer;
+  @media screen and (max-width: 320px) {
+    width: 120px;
+    height: 180px;
+  }
 `;
 
 const MovieTitle = styled.div`
   width: 140px;
   margin-top: 10px;
   text-align: center;
+  @media screen and (max-width: 320px) {
+    width: 100px;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -83,7 +105,6 @@ const Contents = ({ data }: any) => {
                 alt="popular movie"
               />
             )}
-
             <MovieTitle>{movie.title}</MovieTitle>
           </MovieImageContainer>
         ))}

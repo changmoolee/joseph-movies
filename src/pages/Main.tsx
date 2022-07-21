@@ -67,13 +67,13 @@ const Main = () => {
               {loading ? <SkeletonContents /> : <Contents data={popular} />}
             </TabsDescription>
             <TabsDescription>
-              <Contents data={nowPlaying} />
+              {loading ? <SkeletonContents /> : <Contents data={nowPlaying} />}
             </TabsDescription>
             <TabsDescription>
-              <Contents data={upComing} />
+              {loading ? <SkeletonContents /> : <Contents data={upComing} />}
             </TabsDescription>
             <TabsDescription>
-              <Contents data={topRated} />
+              {loading ? <SkeletonContents /> : <Contents data={topRated} />}
             </TabsDescription>
           </TabsDescriptions>
         </>

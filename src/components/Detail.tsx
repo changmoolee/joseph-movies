@@ -10,6 +10,11 @@ const Container = styled.div`
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
+  @media screen and (min-width: 800px) {
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 50px;
+  }
 `;
 
 const PosterImage = styled.img`
@@ -52,6 +57,7 @@ const Overview = styled.div`
 const Paragraph = styled.p`
   padding: 5px 10px;
   box-sizing: border-box;
+  line-height: 120%;
 `;
 
 interface DetailProps {

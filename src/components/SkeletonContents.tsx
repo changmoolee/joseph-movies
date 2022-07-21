@@ -25,11 +25,15 @@ const MovieImageContainer = styled.div`
   box-sizing: border-box;
 `;
 
-const MovieImage = styled.img`
+const MovieImage = styled.div`
   width: 150px;
   height: 225px;
   border-radius: 10px;
   object-fit: contain;
+  @media screen and (max-width: 320px) {
+    width: 120px;
+    height: 180px;
+  }
 `;
 
 const MovieTitle = styled.div`
@@ -37,6 +41,9 @@ const MovieTitle = styled.div`
   height: 16px;
   margin-top: 10px;
   text-align: center;
+  @media screen and (max-width: 320px) {
+    width: 100px;
+  }
 `;
 
 const ButtonContainer = styled.div`
