@@ -3,41 +3,6 @@ import styled from "styled-components";
 import { Button, Search } from "joseph-ui-kit";
 import { useNavigate } from "react-router-dom";
 
-const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  background-color: blue;
-`;
-
-const Welcome = styled.div`
-  font-size: 24px;
-  padding: 10px 20px;
-  color: white;
-  box-sizing: border-box;
-  @media screen and (min-width: 800px) {
-    font-size: 36px;
-    padding: 20px 40px 10px 40px;
-  }
-`;
-const Guide = styled.div`
-  padding: 10px 20px;
-  color: white;
-  box-sizing: border-box;
-  @media screen and (min-width: 800px) {
-    font-size: 24px;
-    padding: 10px 40px 20px 40px;
-  }
-`;
-
-const SubContainer = styled.div`
-  display: flex;
-  div {
-    flex-grow: 1;
-  }
-`;
-
 const SearchBox = () => {
   const inputRef = useRef<null | HTMLInputElement>(null);
 
@@ -81,3 +46,38 @@ const SearchBox = () => {
 };
 
 export default SearchBox;
+
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: blue;
+`;
+
+const Welcome = styled.div`
+  font-size: 24px;
+  padding: 10px 20px;
+  color: white;
+  box-sizing: border-box;
+  @media screen and (min-width: 800px) {
+    font-size: 36px;
+    padding: 20px 40px 10px 40px;
+  }
+`;
+const Guide = styled.div`
+  padding: 10px 20px;
+  color: white;
+  box-sizing: border-box;
+  @media screen and (min-width: 800px) {
+    font-size: 24px;
+    padding: 10px 40px 20px 40px;
+  }
+`;
+
+const SubContainer = styled.div`
+  display: flex;
+  div {
+    flex-grow: 1;
+  }
+`;

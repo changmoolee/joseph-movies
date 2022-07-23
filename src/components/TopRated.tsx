@@ -6,14 +6,6 @@ import Contents from "./Contents";
 import SkeletonContents from "./SkeletonContents";
 import SortAccordion from "./SortAccordion";
 
-const ButtonContainer = styled.div`
-  width: 100%;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 const TopRated = () => {
   const [loading, setLoading] = useState(true);
   const [topRated, setTopRated] = useState([]);
@@ -59,3 +51,11 @@ const TopRated = () => {
 };
 
 export default TopRated;
+
+const ButtonContainer = styled.div`
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

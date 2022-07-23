@@ -2,6 +2,26 @@ import React from "react";
 import styled from "styled-components";
 import { SkeletonUI } from "joseph-ui-kit";
 
+const SkeletonDetail = () => {
+  return (
+    <Container>
+      <SkeletonUI>
+        <PosterImage />
+      </SkeletonUI>
+      <Description>
+        <SkeletonUI>
+          <Title></Title>
+        </SkeletonUI>
+        <SkeletonUI>
+          <Paragraph></Paragraph>
+        </SkeletonUI>
+      </Description>
+    </Container>
+  );
+};
+
+export default SkeletonDetail;
+
 const Container = styled.div`
   width: 100%;
   display: flex;
@@ -9,6 +29,11 @@ const Container = styled.div`
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
+  @media screen and (min-width: 800px) {
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 50px;
+  }
 `;
 
 const PosterImage = styled.img`
@@ -36,23 +61,3 @@ const Paragraph = styled.p`
   height: 140px;
   margin-top: 10px;
 `;
-
-const SkeletonDetail = () => {
-  return (
-    <Container>
-      <SkeletonUI>
-        <PosterImage />
-      </SkeletonUI>
-      <Description>
-        <SkeletonUI>
-          <Title></Title>
-        </SkeletonUI>
-        <SkeletonUI>
-          <Paragraph></Paragraph>
-        </SkeletonUI>
-      </Description>
-    </Container>
-  );
-};
-
-export default SkeletonDetail;

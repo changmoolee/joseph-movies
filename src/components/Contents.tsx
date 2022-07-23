@@ -1,11 +1,41 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { Button } from "joseph-ui-kit";
-import SortAccordion from "./SortAccordion";
+
+const Contents = ({ data }: any) => {
+  const navigate = useNavigate();
+
+  const goToMovie = (movie_id: number) => {
+    navigate(`/movie/${movie_id}`);
+  };
+
+  return (
+    <Container>
+      <GridMovieImages>
+        {data.map((movie: any, index: number) => (
+          <MovieImageContainer
+            key={movie.id + index}
+            onClick={() => goToMovie(movie.id)}
+          >
+            {movie.poster_path === null ? (
+              <NullImage />
+            ) : (
+              <MovieImage
+                src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+                alt="popular movie"
+              />
+            )}
+            <MovieTitle>{movie.title}</MovieTitle>
+          </MovieImageContainer>
+        ))}
+      </GridMovieImages>
+    </Container>
+  );
+};
+
+export default Contents;
 
 const Container = styled.div`
-  height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
 `;
@@ -70,52 +100,3 @@ const MovieTitle = styled.div`
     width: 100px;
   }
 `;
-
-const ButtonContainer = styled.div`
-  width: 100%;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Contents = ({ data }: any) => {
-  const movies = data?.results;
-
-  const navigate = useNavigate();
-
-  const goToMovie = (movie_id: number) => {
-    navigate(`/movie/${movie_id}`);
-  };
-
-  return (
-    <Container>
-      <SortAccordion />
-      <GridMovieImages>
-        {movies?.map((movie: any) => (
-          <MovieImageContainer
-            key={movie.id}
-            onClick={() => goToMovie(movie.id)}
-          >
-            {movie.poster_path === null ? (
-              <NullImage />
-            ) : (
-              <MovieImage
-                src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
-                alt="popular movie"
-              />
-            )}
-            <MovieTitle>{movie.title}</MovieTitle>
-          </MovieImageContainer>
-        ))}
-      </GridMovieImages>
-      {movies?.results?.length >= 20 ? (
-        <ButtonContainer>
-          <Button name="더보기" padding="10px 70px" />
-        </ButtonContainer>
-      ) : null}
-    </Container>
-  );
-};
-
-export default Contents;

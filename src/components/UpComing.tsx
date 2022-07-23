@@ -6,14 +6,6 @@ import Contents from "./Contents";
 import SkeletonContents from "./SkeletonContents";
 import SortAccordion from "./SortAccordion";
 
-const ButtonContainer = styled.div`
-  width: 100%;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 const UpComing = () => {
   const [loading, setLoading] = useState(true);
   const [upComing, setUpComing] = useState([]);
@@ -59,3 +51,11 @@ const UpComing = () => {
 };
 
 export default UpComing;
+
+const ButtonContainer = styled.div`
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
