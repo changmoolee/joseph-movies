@@ -2,21 +2,38 @@ import React from "react";
 import { Accordion, DropDown } from "joseph-ui-kit";
 
 const items = [
-  { id: "option1", text: "인기도 내림차순" },
-  { id: "option2", text: "인기도 오름차순" },
-  { id: "option3", text: "평점 내림차순" },
-  { id: "option4", text: "평점 오름차순" },
-  { id: "option5", text: "상영일 내림차순" },
-  { id: "option6", text: "상영일 오름차순" },
-  { id: "option7", text: "제목 내림차순" },
-  { id: "option8", text: "제목 오름차순" },
+  { id: "popularity.desc", value: "인기도 내림차순" },
+  { id: "popularity.asc", value: "인기도 오름차순" },
+  { id: "vote_average.desc", value: "평점 내림차순" },
+  { id: "vote_average.asc", value: "평점 오름차순" },
+  { id: "release_date.desc", value: "상영일 내림차순" },
+  { id: "release_date.asc", value: "상영일 오름차순" },
+  { id: "original_title.desc", value: "제목 내림차순" },
+  { id: "original_title.asc", value: "제목 오름차순" },
 ];
 
-const SortAccordion = () => {
+interface SortAccordionProps {
+  setSelected?: React.Dispatch<
+    React.SetStateAction<{
+      id: number | string;
+      value: number | string;
+    }>
+  >;
+}
+
+const SortAccordion = ({ setSelected }: SortAccordionProps) => {
   return (
-    <Accordion title="정렬">
-      <DropDown width="250px" label="정렬 기준" hideWarn={true} items={items} />
-    </Accordion>
+    <>
+      <Accordion title="정렬">
+        <DropDown
+          width="250px"
+          label="정렬 기준"
+          hideWarn={true}
+          items={items}
+          setSelected={setSelected}
+        />
+      </Accordion>
+    </>
   );
 };
 
