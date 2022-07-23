@@ -52,12 +52,12 @@ const Description = styled.div`
 `;
 
 const Title = styled.div`
-  width: 280px;
+  width: 200px;
   height: 40px;
 `;
 
 const Paragraph = styled.p`
-  width: 280px;
+  width: 200px;
   height: 140px;
   margin-top: 10px;
 `;
