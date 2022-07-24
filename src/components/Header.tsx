@@ -11,7 +11,10 @@ const Header = () => {
 
   return (
     <Container>
-      <Logo onClick={goToMain}>Logo</Logo>
+      <Logo
+        src={require("../assets/JosephMovie-Logo.png")}
+        onClick={goToMain}
+      />
     </Container>
   );
 };
@@ -24,11 +27,10 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: gray;
+  background-color: black;
 `;
 
-const Logo = styled.div`
+const Logo = styled.img`
   width: 100px;
   height: 50px;
-  background-color: white;
 `;
