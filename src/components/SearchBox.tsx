@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Button, Search } from "joseph-ui-kit";
 import { useNavigate } from "react-router-dom";
 
+const background = require("../assets/Background-Image.jpeg");
+
 const SearchBox = () => {
   const inputRef = useRef<null | HTMLInputElement>(null);
 
@@ -52,12 +54,13 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background-color: blue;
+  background-position: center;
+  background-image: url(${background});
 `;
 
 const Welcome = styled.div`
   font-size: 24px;
-  padding: 10px 20px;
+  padding: 15px 20px 5px 20px;
   color: white;
   box-sizing: border-box;
   @media screen and (min-width: 800px) {
@@ -66,7 +69,7 @@ const Welcome = styled.div`
   }
 `;
 const Guide = styled.div`
-  padding: 10px 20px;
+  padding: 5px 20px 15px 20px;
   color: white;
   box-sizing: border-box;
   @media screen and (min-width: 800px) {
