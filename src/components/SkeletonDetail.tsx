@@ -33,10 +33,11 @@ const Container = styled.div`
     flex-direction: row;
     align-items: flex-start;
     margin-top: 50px;
+    margin-bottom: 50px;
   }
 `;
 
-const PosterImage = styled.img`
+const PosterImage = styled.div`
   width: 200px;
   height: 300px;
   border-radius: 10px;
@@ -47,17 +48,19 @@ const Description = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin-top: 20px;
+  @media screen and (min-width: 800px) {
+    margin-left: 50px;
+  }
 `;
 
 const Title = styled.div`
-  width: 200px;
+  width: 100%;
   height: 40px;
 `;
 
 const Paragraph = styled.p`
-  width: 200px;
+  width: 100%;
   height: 140px;
   margin-top: 10px;
 `;

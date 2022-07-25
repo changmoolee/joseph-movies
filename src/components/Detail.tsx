@@ -27,13 +27,20 @@ const Detail = ({ movie_id }: DetailProps) => {
     <SkeletonDetail />
   ) : (
     <Container>
-      <PosterImage
-        src={`https://image.tmdb.org/t/p/w200/${detail?.poster_path}`}
-        alt="movie poster image"
-      />
+      {detail.poster_path === null ? (
+        <NullImage />
+      ) : (
+        <MovieImage
+          src={`https://image.tmdb.org/t/p/w200/${detail?.poster_path}`}
+          alt="movie poster image"
+        />
+      )}
       <Description>
         <Title>
-          {detail.original_title + ` (${detail.release_date.slice(0, 4)})`}
+          {detail.original_title +
+            (detail.release_date
+              ? ` (${detail.release_date.slice(0, 4)})`
+              : "")}
         </Title>
         <GenreContainer>
           <div>
@@ -41,6 +48,8 @@ const Detail = ({ movie_id }: DetailProps) => {
             {detail.production_countries.map(
               (country: any) => " (" + country.iso_3166_1 + ") "
             )}
+          </div>
+          <div>
             {Math.floor(detail.runtime / 60) > 0
               ? Math.floor(detail.runtime / 60) + "시간 "
               : null}
@@ -76,48 +85,72 @@ const Container = styled.div`
     flex-direction: row;
     align-items: flex-start;
     margin-top: 50px;
+    margin-bottom: 50px;
   }
 `;
 
-const PosterImage = styled.img`
+const MovieImage = styled.img`
   width: 200px;
+  height: 300px;
   border-radius: 10px;
+  object-fit: cover;
+`;
+
+const NullImage = styled.div`
+  width: 200px;
+  height: 300px;
+  border-radius: 10px;
+  background-image: url("https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-color: #dbdbdb;
   object-fit: contain;
+  cursor: pointer;
+  @media screen and (max-width: 320px) {
+    width: 120px;
+    height: 180px;
+  }
 `;
 
 const Description = styled.div`
-  width: 100%;
   margin-top: 20px;
+  @media screen and (min-width: 800px) {
+    margin-left: 50px;
+  }
+`;
+
+const DefaultStyle = `
+  text-align: center;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  @media screen and (min-width: 800px) {
+    text-align: left;
+  }
 `;
 
 const Title = styled.div`
-  text-align: center;
-  font-weight: 700;
+  ${DefaultStyle}
   font-size: 20px;
-  padding: 5px 10px;
-  box-sizing: border-box;
+  font-weight: 700;
 `;
 
 const GenreContainer = styled.div`
-  text-align: center;
+  ${DefaultStyle}
 `;
 
 const Tagline = styled.div`
-  text-align: center;
+  ${DefaultStyle}
   color: gray;
   font-style: italic;
-  padding: 5px 10px;
-  box-sizing: border-box;
 `;
 const Overview = styled.div`
+  ${DefaultStyle}
+  text-align: left;
   font-size: 18px;
   font-weight: 700;
-  padding: 5px 10px;
-  box-sizing: border-box;
 `;
 
 const Paragraph = styled.p`
-  padding: 5px 10px;
-  box-sizing: border-box;
-  line-height: 120%;
+  ${DefaultStyle}
 `;
