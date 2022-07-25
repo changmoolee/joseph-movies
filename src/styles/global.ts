@@ -4,8 +4,13 @@ import reset from "styled-reset";
 const GlobalStyle = createGlobalStyle`
 ${reset}
 html {
-  font-family: 'IBM Plex Sans', sans-serif;
+  overflow-y: scroll;
 }
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  line-height: 120%;
+}
+
 `;
 
 export default GlobalStyle;
