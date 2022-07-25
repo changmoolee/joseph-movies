@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import SkeletonDetail from "./SkeletonDetail";
+import ScoreGraph from "./ScoreGraph";
 
 interface DetailProps {
   movie_id: number;
@@ -21,7 +22,9 @@ const Detail = ({ movie_id }: DetailProps) => {
         setDetail(res.data);
         setLoading(false);
       });
-  }, []);
+  }, [movie_id]);
+
+  console.log(detail);
 
   return loading ? (
     <SkeletonDetail />
@@ -42,26 +45,29 @@ const Detail = ({ movie_id }: DetailProps) => {
               ? ` (${detail.release_date.slice(0, 4)})`
               : "")}
         </Title>
-        <GenreContainer>
-          <div>
-            {detail.release_date}
-            {detail.production_countries.map(
-              (country: any) => " (" + country.iso_3166_1 + ") "
-            )}
-          </div>
-          <div>
-            {Math.floor(detail.runtime / 60) > 0
-              ? Math.floor(detail.runtime / 60) + "시간 "
-              : null}
-            {(detail.runtime % 60) + "분"}
-          </div>
-          <div>
-            {detail.genres.map(
-              (genre: any, index: number) =>
-                genre.name + (index !== detail.genres.length - 1 ? ", " : "")
-            )}
-          </div>
-        </GenreContainer>
+        <InfoBox>
+          <ScoreGraph vote_average={detail?.vote_average} />
+          <GenreContainer>
+            <div>
+              {detail.release_date}
+              {detail.production_countries.map(
+                (country: any) => " (" + country.iso_3166_1 + ") "
+              )}
+            </div>
+            <div>
+              {Math.floor(detail.runtime / 60) > 0
+                ? Math.floor(detail.runtime / 60) + "시간 "
+                : null}
+              {(detail.runtime % 60) + "분"}
+            </div>
+            <div>
+              {detail.genres.map(
+                (genre: any, index: number) =>
+                  genre.name + (index !== detail.genres.length - 1 ? ", " : "")
+              )}
+            </div>
+          </GenreContainer>
+        </InfoBox>
         <Tagline>
           <em>{detail.tagline}</em>
         </Tagline>
@@ -133,6 +139,16 @@ const Title = styled.div`
   ${DefaultStyle}
   font-size: 20px;
   font-weight: 700;
+`;
+
+const InfoBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ${DefaultStyle}
+  @media screen and (min-width: 800px) {
+    justify-content: flex-start;
+  }
 `;
 
 const GenreContainer = styled.div`
