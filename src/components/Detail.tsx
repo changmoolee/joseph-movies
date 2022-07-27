@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { Button, Modal } from "joseph-ui-kit";
+import { Trailer } from "./Youtube";
 import SkeletonDetail from "./SkeletonDetail";
 import ScoreGraph from "./ScoreGraph";
 
@@ -11,20 +13,40 @@ interface DetailProps {
 const Detail = ({ movie_id }: DetailProps) => {
   const [loading, setLoading] = useState(true);
   const [detail, setDetail] = useState<any>({});
+  const [videoId, setVideoId] = useState<any>("");
+  const [ModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   useEffect(() => {
     setLoading(true);
+    const getDetail = axios.get(
+      `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.REACT_APP_API_KEY}&language=ko&page=1`
+    );
+
+    const getYoutubekey = axios.get(
+      `https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=${process.env.REACT_APP_API_KEY}`
+    );
+
     axios
-      .get(
-        `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.REACT_APP_API_KEY}&language=ko&page=1`
+      .all([getDetail, getYoutubekey])
+      .then(
+        axios.spread((res1, res2) => {
+          console.log(res1, res2);
+          setDetail(res1.data);
+          setVideoId(res2.data.results[0]?.key);
+        })
       )
-      .then((res) => {
-        setDetail(res.data);
-        setLoading(false);
-      });
+      .then(() => setLoading(false))
+      .catch((err) => console.log(err));
   }, [movie_id]);
 
-  console.log(detail);
+  console.log(videoId);
 
   return loading ? (
     <SkeletonDetail />
@@ -47,33 +69,55 @@ const Detail = ({ movie_id }: DetailProps) => {
         </Title>
         <InfoBox>
           <ScoreGraph vote_average={detail?.vote_average} />
-          <GenreContainer>
-            <div>
-              {detail.release_date}
-              {detail.production_countries.map(
-                (country: any) => " (" + country.iso_3166_1 + ") "
-              )}
-            </div>
-            <div>
-              {Math.floor(detail.runtime / 60) > 0
-                ? Math.floor(detail.runtime / 60) + "시간 "
-                : null}
-              {(detail.runtime % 60) + "분"}
-            </div>
-            <div>
-              {detail.genres.map(
-                (genre: any, index: number) =>
-                  genre.name + (index !== detail.genres.length - 1 ? ", " : "")
-              )}
-            </div>
-          </GenreContainer>
+          {videoId ? (
+            <Button
+              kind="ghost"
+              name="예고편 재생"
+              padding="5px"
+              onClick={openModal}
+            />
+          ) : null}
         </InfoBox>
+        <GenreContainer>
+          <div>
+            {detail.release_date}
+            {detail.production_countries.map(
+              (country: any) => " (" + country.iso_3166_1 + ") "
+            )}
+          </div>
+          <div>
+            {Math.floor(detail.runtime / 60) > 0
+              ? Math.floor(detail.runtime / 60) + "시간 "
+              : null}
+            {(detail.runtime % 60) + "분"}
+          </div>
+          <div>
+            {detail.genres.map(
+              (genre: any, index: number) =>
+                genre.name + (index !== detail.genres.length - 1 ? ", " : "")
+            )}
+          </div>
+        </GenreContainer>
         <Tagline>
           <em>{detail.tagline}</em>
         </Tagline>
         <Overview>{detail.overview ? "개요" : null}</Overview>
         <Paragraph>{detail.overview}</Paragraph>
       </Description>
+
+      {ModalOpen ? (
+        <Modal
+          width="50%"
+          height="50%"
+          label=""
+          title="예고편 영상"
+          closeModal={closeModal}
+          firstButtonDisabled={true}
+          secondaryButtonDisabled={true}
+        >
+          <Trailer videoId={videoId} />
+        </Modal>
+      ) : null}
     </Container>
   );
 };
@@ -103,8 +147,8 @@ const MovieImage = styled.img`
 `;
 
 const NullImage = styled.div`
-  width: 200px;
-  height: 300px;
+  min-width: 200px;
+  min-height: 300px;
   border-radius: 10px;
   background-image: url("https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg");
   background-position: center;
@@ -122,6 +166,7 @@ const NullImage = styled.div`
 const Description = styled.div`
   margin-top: 20px;
   @media screen and (min-width: 800px) {
+    margin-top: 0;
     margin-left: 50px;
   }
 `;
