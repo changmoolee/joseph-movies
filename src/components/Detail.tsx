@@ -37,7 +37,6 @@ const Detail = ({ movie_id }: DetailProps) => {
       .all([getDetail, getYoutubekey])
       .then(
         axios.spread((res1, res2) => {
-          console.log(res1, res2);
           setDetail(res1.data);
           setVideoId(res2.data.results[0]?.key);
         })
@@ -45,8 +44,6 @@ const Detail = ({ movie_id }: DetailProps) => {
       .then(() => setLoading(false))
       .catch((err) => console.log(err));
   }, [movie_id]);
-
-  console.log(videoId);
 
   return loading ? (
     <SkeletonDetail />
@@ -129,8 +126,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  box-sizing: border-box;
   @media screen and (min-width: 800px) {
     flex-direction: row;
     align-items: flex-start;
@@ -142,14 +137,12 @@ const Container = styled.div`
 const MovieImage = styled.img`
   width: 200px;
   height: 300px;
-  border-radius: 10px;
   object-fit: cover;
 `;
 
 const NullImage = styled.div`
   min-width: 200px;
   min-height: 300px;
-  border-radius: 10px;
   background-image: url("https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg");
   background-position: center;
   background-repeat: no-repeat;

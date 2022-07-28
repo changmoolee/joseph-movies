@@ -40,7 +40,6 @@ const Container = styled.div`
 const PosterImage = styled.div`
   width: 200px;
   height: 300px;
-  border-radius: 10px;
   object-fit: contain;
 `;
 

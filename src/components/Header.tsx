@@ -1,27 +1,22 @@
 import React from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const navigate = useNavigate();
-
-  const goToMain = () => {
-    navigate("/");
-  };
-
   return (
     <Container>
-      <Logo
-        src={require("../assets/JosephMovie-Logo.png")}
-        onClick={goToMain}
-      />
+      <a
+        href={`${process.env.REACT_APP_URL}`}
+        style={{ textDecoration: "none", color: "black" }}
+      >
+        <Logo src={require("../assets/JosephMovie-Logo.png")} />
+      </a>
     </Container>
   );
 };
 
 export default Header;
 
-const Container = styled.div`
+const Container = styled.header`
   width: 100%;
   height: 60px;
   display: flex;
