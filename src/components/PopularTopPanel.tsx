@@ -6,38 +6,38 @@ import Contents from "./Contents";
 import SkeletonContents from "./SkeletonContents";
 import SortAccordion from "./SortAccordion";
 
-const Popular = () => {
+const PopularTopPanel = () => {
   const [loading, setLoading] = useState(true);
   const [popular, setPopular] = useState([]);
-  const [pageNum, setPageNum] = useState(1);
+  const [page, setPage] = useState(1);
   const [selected, setSelected] = useState<{
     id: number | string;
     value: number | string;
   }>({ id: "popularity.desc", value: "인기도 내림차순" });
 
   const morePage = () => {
-    setPageNum((pageNum) => pageNum + 1);
+    setPage((page) => page + 1);
   };
 
   useEffect(() => {
     setLoading(true);
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=ko&page=${pageNum}`
+        `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=ko&page=${page}`
       )
       .then((res) => {
         setPopular((popular) => popular.concat(res.data.results));
       })
       .then(() => setLoading(false))
       .catch((err) => console.log(err));
-  }, [pageNum]);
+  }, [page]);
 
   // useEffect(() => {
   //   setLoading(true);
   //   if (didMount.current) {
   //     axios
   //       .get(
-  //         `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=ko&page=${pageNum}&sort_by=${selected.id}`
+  //         `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=ko&page=${page}&sort_by=${selected.id}`
   //       )
   //       .then((res) => {
   //         setPopular2((popular2) => popular2.concat(res.data.results));
@@ -59,7 +59,7 @@ const Popular = () => {
     <>
       <SortAccordion setSelected={setSelected} />
       <Contents data={popular} />
-      {popular.length >= 20 * pageNum ? (
+      {popular.length >= 20 * page ? (
         <ButtonContainer>
           <Button name="더보기" padding="10px 70px" onClick={morePage} />
         </ButtonContainer>
@@ -68,7 +68,7 @@ const Popular = () => {
   );
 };
 
-export default Popular;
+export default PopularTopPanel;
 
 const ButtonContainer = styled.div`
   width: 100%;

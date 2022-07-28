@@ -9,10 +9,10 @@ import {
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SearchBox from "../components/SearchBox";
-import Popular from "../components/Popular";
-import NowPlaying from "../components/NowPlaying";
-import UpComing from "../components/UpComing";
-import TopRated from "../components/TopRated";
+import PopularTopPanel from "../components/PopularTopPanel";
+import NowPlayingTopPanel from "../components/NowPlayingTopPanel";
+import UpComingTopPanel from "../components/UpComingTopPanel";
+import TopRatedTopPanel from "../components/TopRatedTopPanel";
 
 const Main = () => {
   return (
@@ -29,19 +29,19 @@ const Main = () => {
           </TabList>
           <TabsDescriptions>
             <TabsDescription>
-              <Popular />
+              <PopularTopPanel />
             </TabsDescription>
 
             <TabsDescription>
-              <NowPlaying />
+              <NowPlayingTopPanel />
             </TabsDescription>
 
             <TabsDescription>
-              <UpComing />
+              <UpComingTopPanel />
             </TabsDescription>
 
             <TabsDescription>
-              <TopRated />
+              <TopRatedTopPanel />
             </TabsDescription>
           </TabsDescriptions>
         </>

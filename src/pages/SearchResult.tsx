@@ -9,34 +9,42 @@ import SkeletonContents from "../components/SkeletonContents";
 import Contents from "../components/Contents";
 import Footer from "../components/Footer";
 
-const Result = () => {
-  const { value } = useParams();
+const SearchResult = () => {
+  const { keyword } = useParams();
 
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState([]);
-  const [pageNum, setPageNum] = useState(1);
+  const [searchResult, setSearchResult] = useState([]);
+  const [page, setPage] = useState(1);
 
   const morePage = () => {
-    setPageNum((pageNum) => pageNum + 1);
+    setLoading(true);
     axios
       .get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=ko&page=${pageNum}&query=${value}`
+        `https://api.themoviedb.org/3/search/movie?api_key=${
+          process.env.REACT_APP_API_KEY
+        }&language=ko&page=${page + 1}&query=${keyword}`
       )
-      .then((res) => setSearch((search) => search.concat(res.data.results)))
-      .then(() => setLoading(false))
+      .then((res) =>
+        setSearchResult((searchResult) => searchResult.concat(res.data.results))
+      )
+      .then(() => {
+        setPage((page) => page + 1);
+        setLoading(false);
+      })
       .catch((err) => console.log(err));
   };
 
   useEffect(() => {
-    setPageNum(1);
+    setLoading(true);
+    setPage(1);
     axios
       .get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=ko&page=1&query=${value}`
+        `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=ko&page=1&query=${keyword}`
       )
-      .then((res) => setSearch(res.data.results))
+      .then((res) => setSearchResult(res.data.results))
       .then(() => setLoading(false))
       .catch((err) => console.log(err));
-  }, [value]);
+  }, [keyword]);
 
   return (
     <>
@@ -53,12 +61,12 @@ const Result = () => {
         </ResultText>
       ) : (
         <ResultText>
-          <span style={{ fontStyle: "italic" }}>"{value}"</span> 검색 결과
-          {search.length}건의 영화
+          <span style={{ fontStyle: "italic" }}>"{keyword}"</span> 검색 결과
+          {searchResult.length}건의 영화
         </ResultText>
       )}
-      {loading ? <SkeletonContents /> : <Contents data={search} />}
-      {search.length >= 20 * pageNum ? (
+      {loading ? <SkeletonContents /> : <Contents data={searchResult} />}
+      {searchResult.length >= 20 * page ? (
         <ButtonContainer>
           <Button name="더보기" padding="10px 70px" onClick={morePage} />
         </ButtonContainer>
@@ -68,7 +76,7 @@ const Result = () => {
   );
 };
 
-export default Result;
+export default SearchResult;
 
 const ResultText = styled.div`
   padding: 20px;
