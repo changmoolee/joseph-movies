@@ -1,11 +1,6 @@
 import React from "react";
 import { Tabs } from "joseph-ui-kit";
-import {
-  Tab,
-  TabList,
-  TabsDescription,
-  TabsDescriptions,
-} from "joseph-ui-kit/dist/components/Tabs/Tabs";
+import { TabList, Tab, TabPanels, TabPanel } from "joseph-ui-kit";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SearchBox from "../components/SearchBox";
@@ -27,23 +22,23 @@ const Main = () => {
             <Tab>개봉 예정</Tab>
             <Tab>높은 평점</Tab>
           </TabList>
-          <TabsDescriptions>
-            <TabsDescription>
+          <TabPanels>
+            <TabPanel>
               <PopularTopPanel />
-            </TabsDescription>
+            </TabPanel>
 
-            <TabsDescription>
+            <TabPanel>
               <NowPlayingTopPanel />
-            </TabsDescription>
+            </TabPanel>
 
-            <TabsDescription>
+            <TabPanel>
               <UpComingTopPanel />
-            </TabsDescription>
+            </TabPanel>
 
-            <TabsDescription>
+            <TabPanel>
               <TopRatedTopPanel />
-            </TabsDescription>
-          </TabsDescriptions>
+            </TabPanel>
+          </TabPanels>
         </>
       </Tabs>
       <Footer />
