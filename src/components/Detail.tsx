@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { Button, Modal } from "joseph-ui-kit";
+import { Button, Modal, FixedHeadingStyles, BodyStyles } from "joseph-ui-kit";
 import { Trailer } from "./Youtube";
 import SkeletonDetail from "./SkeletonDetail";
 import ScoreGraph from "./ScoreGraph";
@@ -105,7 +105,7 @@ const Detail = ({ movie_id }: DetailProps) => {
       {ModalOpen ? (
         <Modal
           width="50%"
-          height="50%"
+          height="60%"
           label=""
           title="예고편 영상"
           closeModal={closeModal}
@@ -126,6 +126,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 20px;
   @media screen and (min-width: 800px) {
     flex-direction: row;
     align-items: flex-start;
@@ -157,16 +158,17 @@ const NullImage = styled.div`
 `;
 
 const Description = styled.div`
-  margin-top: 20px;
+  margin: 20px 0px;
+
   @media screen and (min-width: 800px) {
-    margin-top: 0;
+    margin: 0;
     margin-left: 50px;
   }
 `;
 
 const DefaultStyle = `
   text-align: center;
-  padding: 5px 10px;
+  margin: 10px;
   box-sizing: border-box;
   @media screen and (min-width: 800px) {
     text-align: left;
@@ -175,8 +177,7 @@ const DefaultStyle = `
 
 const Title = styled.div`
   ${DefaultStyle}
-  font-size: 20px;
-  font-weight: 700;
+  ${FixedHeadingStyles.external.heading04}
 `;
 
 const InfoBox = styled.div`
@@ -191,20 +192,22 @@ const InfoBox = styled.div`
 
 const GenreContainer = styled.div`
   ${DefaultStyle}
+  ${BodyStyles.external.bodyCompact02}
 `;
 
 const Tagline = styled.div`
   ${DefaultStyle}
+  ${FixedHeadingStyles.external.heading02}
   color: gray;
   font-style: italic;
 `;
 const Overview = styled.div`
   ${DefaultStyle}
+  ${FixedHeadingStyles.external.heading03}
   text-align: left;
-  font-size: 18px;
-  font-weight: 700;
 `;
 
 const Paragraph = styled.p`
   ${DefaultStyle}
+  ${BodyStyles.external.body02}
 `;

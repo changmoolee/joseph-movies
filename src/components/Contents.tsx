@@ -33,6 +33,7 @@ export default Contents;
 
 const Container = styled.div`
   margin-top: 20px;
+  margin-bottom: 20px;
 `;
 
 const GridMovieImages = styled.div`
@@ -40,9 +41,8 @@ const GridMovieImages = styled.div`
   display: grid;
   justify-items: center;
   grid-template-columns: repeat(2, 1fr);
-  column-gap: 20px;
-  row-gap: 20px;
-  box-sizing: border-box;
+  row-gap: 10px;
+
   @media screen and (min-width: 1400px) {
     grid-template-columns: repeat(5, 1fr);
   }
@@ -54,13 +54,17 @@ const GridMovieImages = styled.div`
   @media screen and (min-width: 800px) and (max-width: 1100px) {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  @media screen and (min-width: 800px) {
+    column-gap: 20px;
+    row-gap: 20px;
+  }
 `;
 
 const MovieImageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-sizing: border-box;
   cursor: pointer;
 `;
 

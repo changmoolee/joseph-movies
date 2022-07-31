@@ -62,7 +62,7 @@ const SearchResult = () => {
       ) : (
         <ResultText>
           <span style={{ fontStyle: "italic" }}>"{keyword}"</span> 검색 결과
-          {searchResult.length}건의 영화
+          &nbsp;{searchResult.length}건의 영화
         </ResultText>
       )}
       {loading ? <SkeletonContents /> : <Contents data={searchResult} />}
@@ -79,8 +79,7 @@ const SearchResult = () => {
 export default SearchResult;
 
 const ResultText = styled.div`
-  padding: 20px;
-  box-sizing: border-box;
+  margin: 20px;
 `;
 
 const ButtonContainer = styled.div`
