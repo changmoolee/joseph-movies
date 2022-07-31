@@ -1,18 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import GithubLogo from "../assets/icons/GithubLogo";
 
 const Footer = () => {
   return (
     <Container>
-      <SubContainer>
-        <GitHubLogo
-          src={require("../assets/GitHub-Mark-64px.png")}
-          alt="GitHub Logo"
-        />
-        <GitHubAnchor href="https://github.com/changmoolee?tab=repositories">
+      <GitHubAnchor href="https://github.com/changmoolee?tab=repositories">
+        <LogoBox>
+          <GithubLogo />
           changmoolee
-        </GitHubAnchor>
-      </SubContainer>
+        </LogoBox>
+      </GitHubAnchor>
     </Container>
   );
 };
@@ -28,15 +26,10 @@ const Container = styled.footer`
   background-color: #376188;
 `;
 
-const SubContainer = styled.div`
+const LogoBox = styled.div`
   width: 130px;
   display: flex;
   justify-content: space-between;
-`;
-
-const GitHubLogo = styled.img`
-  width: 20px;
-  height: 20px;
 `;
 
 const GitHubAnchor = styled.a`
