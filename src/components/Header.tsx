@@ -1,36 +1,28 @@
 import React from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import JosephMovieLogo from "../assets/icons/JosephMovieLogo";
+import JosephMovieLogo2 from "../assets/icons/JosephMovieLogo2";
 
 const Header = () => {
-  const navigate = useNavigate();
-
-  const goToMain = () => {
-    navigate("/");
-  };
-
   return (
     <Container>
-      <Logo
-        src={require("../assets/JosephMovie-Logo.png")}
-        onClick={goToMain}
-      />
+      <a
+        href={`${process.env.REACT_APP_URL}`}
+        style={{ textDecoration: "none", color: "black" }}
+      >
+        <JosephMovieLogo2 />
+      </a>
     </Container>
   );
 };
 
 export default Header;
 
-const Container = styled.div`
+const Container = styled.header`
   width: 100%;
-  height: 60px;
+  height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: black;
-`;
-
-const Logo = styled.img`
-  width: 100px;
-  height: 50px;
 `;

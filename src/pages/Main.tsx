@@ -1,18 +1,13 @@
 import React from "react";
 import { Tabs } from "joseph-ui-kit";
-import {
-  Tab,
-  TabList,
-  TabsDescription,
-  TabsDescriptions,
-} from "joseph-ui-kit/dist/components/Tabs/Tabs";
+import { TabList, Tab, TabPanels, TabPanel } from "joseph-ui-kit";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SearchBox from "../components/SearchBox";
-import Popular from "../components/Popular";
-import NowPlaying from "../components/NowPlaying";
-import UpComing from "../components/UpComing";
-import TopRated from "../components/TopRated";
+import PopularTopPanel from "../components/PopularTopPanel";
+import NowPlayingTopPanel from "../components/NowPlayingTopPanel";
+import UpComingTopPanel from "../components/UpComingTopPanel";
+import TopRatedTopPanel from "../components/TopRatedTopPanel";
 
 const Main = () => {
   return (
@@ -27,23 +22,23 @@ const Main = () => {
             <Tab>개봉 예정</Tab>
             <Tab>높은 평점</Tab>
           </TabList>
-          <TabsDescriptions>
-            <TabsDescription>
-              <Popular />
-            </TabsDescription>
+          <TabPanels>
+            <TabPanel>
+              <PopularTopPanel />
+            </TabPanel>
 
-            <TabsDescription>
-              <NowPlaying />
-            </TabsDescription>
+            <TabPanel>
+              <NowPlayingTopPanel />
+            </TabPanel>
 
-            <TabsDescription>
-              <UpComing />
-            </TabsDescription>
+            <TabPanel>
+              <UpComingTopPanel />
+            </TabPanel>
 
-            <TabsDescription>
-              <TopRated />
-            </TabsDescription>
-          </TabsDescriptions>
+            <TabPanel>
+              <TopRatedTopPanel />
+            </TabPanel>
+          </TabPanels>
         </>
       </Tabs>
       <Footer />

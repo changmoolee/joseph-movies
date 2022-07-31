@@ -27,8 +27,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  box-sizing: border-box;
   @media screen and (min-width: 800px) {
     flex-direction: row;
     align-items: flex-start;
@@ -40,8 +38,6 @@ const Container = styled.div`
 const PosterImage = styled.div`
   width: 200px;
   height: 300px;
-  border-radius: 10px;
-  object-fit: contain;
 `;
 
 const Description = styled.div`
@@ -50,6 +46,7 @@ const Description = styled.div`
   flex-direction: column;
   margin-top: 20px;
   @media screen and (min-width: 800px) {
+    margin-top: 0;
     margin-left: 50px;
   }
 `;

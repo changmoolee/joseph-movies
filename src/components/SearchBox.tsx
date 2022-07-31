@@ -1,9 +1,7 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
-import { Button, Search } from "joseph-ui-kit";
+import { Button, Search, FixedHeadingStyles } from "joseph-ui-kit";
 import { useNavigate } from "react-router-dom";
-
-const background = require("../assets/Background-Image.jpeg");
 
 const SearchBox = () => {
   const inputRef = useRef<null | HTMLInputElement>(null);
@@ -30,9 +28,12 @@ const SearchBox = () => {
 
   return (
     <Container>
-      <Welcome>환영합니다.</Welcome>
-      <Guide>영화 이름을 검색해보세요!</Guide>
-      <SubContainer>
+      <Introduction>
+        <FirstHeading>환영합니다.</FirstHeading>
+        <SecondHeading>영화 이름을 검색해 보세요!</SecondHeading>
+      </Introduction>
+
+      <SearchWithButton>
         <div>
           <Search
             inputRef={inputRef}
@@ -42,7 +43,7 @@ const SearchBox = () => {
           />
         </div>
         <Button name="검색" padding="10px 20px" onClick={handleClick} />
-      </SubContainer>
+      </SearchWithButton>
     </Container>
   );
 };
@@ -54,31 +55,37 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  background-size: 100%;
   background-position: center;
-  background-image: url(${background});
+  background-image: url("https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2022/03/nope-poster-2.png?w=1075&ssl=1");
+  background-repeat: no-repeat;
 `;
 
-const Welcome = styled.div`
-  font-size: 24px;
-  padding: 15px 20px 5px 20px;
-  color: white;
+const Introduction = styled.div`
+  width: 100%;
+  padding: 10px 20px;
   box-sizing: border-box;
   @media screen and (min-width: 800px) {
-    font-size: 36px;
-    padding: 20px 40px 10px 40px;
-  }
-`;
-const Guide = styled.div`
-  padding: 5px 20px 15px 20px;
-  color: white;
-  box-sizing: border-box;
-  @media screen and (min-width: 800px) {
-    font-size: 24px;
-    padding: 10px 40px 20px 40px;
+    padding: 20px 50px;
   }
 `;
 
-const SubContainer = styled.div`
+const FirstHeading = styled.div`
+  ${FixedHeadingStyles.external.heading04}
+  color: white;
+  @media screen and (min-width: 800px) {
+    ${FixedHeadingStyles.external.heading05}
+  }
+`;
+const SecondHeading = styled.div`
+  ${FixedHeadingStyles.external.heading03}
+  color: white;
+  @media screen and (min-width: 800px) {
+    ${FixedHeadingStyles.external.heading04}
+  }
+`;
+
+const SearchWithButton = styled.div`
   display: flex;
   div {
     flex-grow: 1;

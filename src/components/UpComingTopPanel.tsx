@@ -6,31 +6,31 @@ import Contents from "./Contents";
 import SkeletonContents from "./SkeletonContents";
 import SortAccordion from "./SortAccordion";
 
-const NowPlaying = () => {
+const UpComingTopPanel = () => {
   const [loading, setLoading] = useState(true);
-  const [nowPlaying, setNowPlaying] = useState([]);
-  const [pageNum, setPageNum] = useState(1);
+  const [upComing, setUpComing] = useState([]);
+  const [page, setPage] = useState(1);
   const [selected, setSelected] = useState<{
     id: number | string;
     value: number | string;
   }>({ id: "popularity.desc", value: "인기도 내림차순" });
 
   const morePage = () => {
-    setPageNum((pageNum) => pageNum + 1);
+    setPage((page) => page + 1);
   };
 
   useEffect(() => {
     setLoading(true);
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=ko&page=${pageNum}`
+        `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=ko&page=${page}`
       )
       .then((res) =>
-        setNowPlaying((nowPlaying) => nowPlaying.concat(res.data.results))
+        setUpComing((upComing) => upComing.concat(res.data.results))
       )
       .then(() => setLoading(false))
       .catch((err) => console.log(err));
-  }, [pageNum]);
+  }, [page]);
 
   return loading ? (
     <>
@@ -40,8 +40,8 @@ const NowPlaying = () => {
   ) : (
     <>
       <SortAccordion setSelected={setSelected} />
-      <Contents data={nowPlaying} />
-      {nowPlaying.length >= 20 * pageNum ? (
+      <Contents data={upComing} />
+      {upComing.length >= 20 * page ? (
         <ButtonContainer>
           <Button name="더보기" padding="10px 70px" onClick={morePage} />
         </ButtonContainer>
@@ -50,7 +50,7 @@ const NowPlaying = () => {
   );
 };
 
-export default NowPlaying;
+export default UpComingTopPanel;
 
 const ButtonContainer = styled.div`
   width: 100%;

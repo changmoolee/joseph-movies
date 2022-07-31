@@ -60,5 +60,5 @@ const InnerCircle = styled.div`
 `;
 
 const Text = styled.span`
-  padding: 5px;
+  margin: 5px;
 `;
