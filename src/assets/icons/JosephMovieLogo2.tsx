@@ -4,8 +4,8 @@ import { SVGProps } from "react";
 const JosephMovieLogo2 = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={120}
-    height={60}
+    width={props.width}
+    height={props.height}
     viewBox="0 0 200 101"
     {...props}
   >

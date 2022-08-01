@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { SkeletonUI, Button } from "joseph-ui-kit";
+import { SkeletonUI, Button, FixedHeadingStyles } from "joseph-ui-kit";
 import Header from "../components/Header";
 import SearchBox from "../components/SearchBox";
 import SkeletonContents from "../components/SkeletonContents";
@@ -79,7 +79,11 @@ const SearchResult = () => {
 export default SearchResult;
 
 const ResultText = styled.div`
+  ${FixedHeadingStyles.external.heading01}
   margin: 20px;
+  @media screen and (min-width: 800px) {
+    ${FixedHeadingStyles.external.heading03}
+  }
 `;
 
 const ButtonContainer = styled.div`
