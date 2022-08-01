@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { BodyStyles } from "joseph-ui-kit";
 
 const Contents = ({ data }: any) => {
   return (
@@ -94,6 +95,7 @@ const NullImage = styled.div`
 `;
 
 const MovieTitle = styled.div`
+  ${BodyStyles.external.bodyCompact02}
   width: 140px;
   margin-top: 10px;
   text-align: center;
