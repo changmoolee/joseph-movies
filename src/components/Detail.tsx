@@ -169,7 +169,6 @@ const Description = styled.div`
 const DefaultStyle = `
   text-align: center;
   margin: 10px;
-  box-sizing: border-box;
   @media screen and (min-width: 800px) {
     text-align: left;
   }
