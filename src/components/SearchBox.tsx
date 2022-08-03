@@ -1,19 +1,19 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Button, Search, FixedHeadingStyles } from "joseph-ui-kit";
 import { useNavigate } from "react-router-dom";
 
 const SearchBox = () => {
-  const inputRef = useRef<null | HTMLInputElement>(null);
+  const [value, setValue] = useState<string>("");
 
   const navigate = useNavigate();
 
   const goToResult = () => {
-    navigate(`/result/${inputRef.current?.value}`);
+    navigate(`/result/${value}`);
   };
 
   const handleClick = () => {
-    if (inputRef.current?.value === "") {
+    if (value === "") {
       alert("검색어를 입력해 주세요.");
     } else {
       goToResult();
@@ -36,10 +36,10 @@ const SearchBox = () => {
       <SearchWithButton>
         <div>
           <Search
-            inputRef={inputRef}
             width="auto"
             placeholder="영화 검색"
-            onKeyUp={pressEnter}
+            onKeyDown={pressEnter}
+            onChange={(data) => setValue(data.value)}
           />
         </div>
         <Button name="검색" padding="10px 20px" onClick={handleClick} />
