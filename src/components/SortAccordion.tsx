@@ -30,7 +30,11 @@ const SortAccordion = ({ setSelected }: SortAccordionProps) => {
           label="정렬 기준"
           hideWarn={true}
           items={items}
-          setSelected={setSelected}
+          onChange={(data) => {
+            if (setSelected) {
+              setSelected(data.selectedItem);
+            }
+          }}
         />
       </Accordion>
     </>

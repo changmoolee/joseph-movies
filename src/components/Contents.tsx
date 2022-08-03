@@ -8,7 +8,7 @@ const Contents = ({ data }: any) => {
       <GridMovieImages>
         {data.map((movie: any, index: number) => (
           <a
-            key={movie.id + index}
+            key={movie.id}
             href={`${process.env.REACT_APP_URL}/movie/${movie.id}`}
             style={{ textDecoration: "none", color: "black" }}
           >

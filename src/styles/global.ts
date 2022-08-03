@@ -6,9 +6,6 @@ ${reset}
 html {
   overflow-y: scroll;
 }
-
-
-
 `;
 
 export default GlobalStyle;
