@@ -1,13 +1,13 @@
 import React from "react";
 import { Tabs } from "joseph-ui-kit";
 import { TabList, Tab, TabPanels, TabPanel } from "joseph-ui-kit";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import SearchBox from "../components/SearchBox";
-import PopularTopPanel from "../components/PopularTopPanel";
-import NowPlayingTopPanel from "../components/NowPlayingTopPanel";
-import UpComingTopPanel from "../components/UpComingTopPanel";
-import TopRatedTopPanel from "../components/TopRatedTopPanel";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
+import SearchBox from "../components/SearchBox/SearchBox";
+import PopularTabPanel from "../components/PopularTabPanel/PopularTabPanel";
+import NowPlayingTabPanel from "../components/NowPlayingTabPanel/NowPlayingTabPanel";
+import UpComingTabPanel from "../components/UpComingTabPanel/UpComingTabPanel";
+import TopRatedTabPanel from "../components/TopRatedTabPanel/TopRatedTabPanel";
 
 const Main = () => {
   return (
@@ -24,19 +24,19 @@ const Main = () => {
           </TabList>
           <TabPanels>
             <TabPanel>
-              <PopularTopPanel />
+              <PopularTabPanel />
             </TabPanel>
 
             <TabPanel>
-              <NowPlayingTopPanel />
+              <NowPlayingTabPanel />
             </TabPanel>
 
             <TabPanel>
-              <UpComingTopPanel />
+              <UpComingTabPanel />
             </TabPanel>
 
             <TabPanel>
-              <TopRatedTopPanel />
+              <TopRatedTabPanel />
             </TabPanel>
           </TabPanels>
         </>

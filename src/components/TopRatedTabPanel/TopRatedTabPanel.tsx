@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import styled from "styled-components";
 import axios from "axios";
 import { Button } from "joseph-ui-kit";
-import Contents from "./Contents";
-import SkeletonContents from "./SkeletonContents";
-import SortAccordion from "./SortAccordion";
+import MovieContents from "../MovieContents/MovieContents";
+import SkeletonContents from "../SkeletonContents/SkeletonContents";
+import SortAccordion from "../SortAccordion/SortAccordion";
+import * as Styled from "./TopRatedTabPanel.styles";
 
-const UpComingTopPanel = () => {
+const TopRatedTopPanel = () => {
   const [loading, setLoading] = useState(true);
-  const [upComing, setUpComing] = useState([]);
+  const [topRated, setTopRated] = useState([]);
   const [page, setPage] = useState(1);
   const [sortedMovies, setSortedMovies] = useState([]);
   const [sortedPage, setSortedPage] = useState(1);
@@ -32,10 +32,10 @@ const UpComingTopPanel = () => {
     setLoading(true);
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=ko&page=${page}`
+        `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=ko&page=${page}`
       )
       .then((res) =>
-        setUpComing((upComing) => upComing.concat(res.data.results))
+        setTopRated((topRated) => topRated.concat(res.data.results))
       )
       .then(() => setLoading(false))
       .catch((err) => console.log(err));
@@ -86,32 +86,24 @@ const UpComingTopPanel = () => {
   ) : sortedMovies.length === 0 ? (
     <>
       <SortAccordion setSelected={setSelected} />
-      <Contents data={upComing} />
-      {upComing.length >= 20 * page ? (
-        <ButtonContainer>
+      <MovieContents data={topRated} />
+      {topRated.length >= 20 * page ? (
+        <Styled.ButtonContainer>
           <Button name="더보기" padding="10px 70px" onClick={morePage} />
-        </ButtonContainer>
+        </Styled.ButtonContainer>
       ) : null}
     </>
   ) : (
     <>
       <SortAccordion setSelected={setSelected} />
-      <Contents data={sortedMovies} />
+      <MovieContents data={sortedMovies} />
       {sortedMovies.length >= 20 * sortedPage ? (
-        <ButtonContainer>
+        <Styled.ButtonContainer>
           <Button name="더보기" padding="10px 70px" onClick={moreSortedPage} />
-        </ButtonContainer>
+        </Styled.ButtonContainer>
       ) : null}
     </>
   );
 };
 
-export default UpComingTopPanel;
-
-const ButtonContainer = styled.div`
-  width: 100%;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+export default TopRatedTopPanel;

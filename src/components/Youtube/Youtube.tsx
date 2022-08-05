@@ -1,7 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import YouTube, { YouTubeProps } from "react-youtube";
-import useResize from "../hooks/useResize";
+import useResize from "../../hooks/useResize";
+import * as Styled from "./Youtube.styles";
 
 export function Trailer({ videoId }: any) {
   const { width, height } = useResize();
@@ -19,20 +19,12 @@ export function Trailer({ videoId }: any) {
   };
 
   return (
-    <VideoBox>
+    <Styled.VideoBox>
       {width > breakpoint ? (
         <YouTube videoId={videoId} opts={pcOpts} />
       ) : (
         <YouTube videoId={videoId} opts={mobileOpts} />
       )}
-    </VideoBox>
+    </Styled.VideoBox>
   );
 }
-
-const VideoBox = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;

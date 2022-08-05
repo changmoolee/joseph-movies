@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import SearchBox from "../components/SearchBox";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import Detail from "../components/Detail";
+import SearchBox from "../components/SearchBox/SearchBox";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
+import Detail from "../components/Detail/Detail";
 
 const Movie = () => {
   const { id } = useParams();
