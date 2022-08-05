@@ -31,10 +31,16 @@ const PopularTopPanel = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios
-      .get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=ko&page=${page}`
-      )
+    axios({
+      method: "get",
+      baseURL: "https://api.themoviedb.org/3",
+      url: "movie/popular",
+      params: {
+        api_key: process.env.REACT_APP_API_KEY,
+        language: "ko",
+        page: page,
+      },
+    })
       .then((res) => {
         setPopular((popular) => popular.concat(res.data.results));
       })
@@ -48,10 +54,26 @@ const PopularTopPanel = () => {
       setLoading(true);
       setSortedMovies([]);
       setSortedPage(1);
-      axios
-        .get(
-          `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=ko&page=1&sort_by=${selected.id}`
-        )
+      axios({
+        method: "get",
+        baseURL: "https://api.themoviedb.org/3",
+        url: "discover/movie",
+        params: {
+          api_key: process.env.REACT_APP_API_KEY,
+          language: "ko",
+          page: 1,
+          sort_by: selected.id,
+          "air_date.lte": "2023-02-05",
+          certification_country: "KR",
+          ott_region: "KR",
+          "release_date.lte": "2023-02-05",
+          show_me: 0,
+          "vote_average.gte": 0,
+          "vote_average.lte": 10,
+          "with_runtime.gte": 0,
+          "with_runtime.lte": 400,
+        },
+      })
         .then((res) => {
           setSortedMovies((popular) => popular.concat(res.data.results));
         })
@@ -67,10 +89,23 @@ const PopularTopPanel = () => {
   useEffect(() => {
     if (sortedPage > 1) {
       setLoading(true);
-      axios
-        .get(
-          `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=ko&page=${sortedPage}&sort_by=${selected.id}`
-        )
+      axios({
+        method: "get",
+        baseURL: "https://api.themoviedb.org/3",
+        url: "discover/movie",
+        params: {
+          api_key: process.env.REACT_APP_API_KEY,
+          language: "ko",
+          page: sortedPage,
+          sort_by: selected.id,
+          "air_date.lte": "2023-02-05",
+          certification_country: "KR",
+          "release_date.lte": "2023-02-05",
+          "vote_average.gte": 0,
+          "vote_average.lte": 10,
+          "with_runtime.lte": 400,
+        },
+      })
         .then((res) => {
           setSortedMovies((popular) => popular.concat(res.data.results));
         })
