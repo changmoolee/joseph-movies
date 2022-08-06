@@ -29,8 +29,10 @@ const SearchBox = () => {
   return (
     <Styled.Container>
       <Styled.Introduction>
-        <Styled.FirstHeading>환영합니다.</Styled.FirstHeading>
-        <Styled.SecondHeading>영화 이름을 검색해 보세요!</Styled.SecondHeading>
+        <Styled.FirstHeading>
+          환영합니다. 수백만 개의 영화를 확인할 수 있습니다.
+        </Styled.FirstHeading>
+        <Styled.SecondHeading>지금 탐색해 보세요!</Styled.SecondHeading>
       </Styled.Introduction>
 
       <Styled.SearchWithButton>

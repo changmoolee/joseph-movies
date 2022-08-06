@@ -17,12 +17,13 @@ export const Introduction = styled.div`
   padding: 10px 20px;
   box-sizing: border-box;
   @media screen and (min-width: 800px) {
-    padding: 20px 50px;
+    text-align: center;
+    padding: 30px 50px;
   }
 `;
 
 export const FirstHeading = styled.div`
-  ${FixedHeadingStyles.external.heading04}
+  ${FixedHeadingStyles.external.heading03}
   color: white;
   @media screen and (min-width: 800px) {
     ${FixedHeadingStyles.external.heading05}
