@@ -6,6 +6,8 @@ import SkeletonContents from "../SkeletonContents/SkeletonContents";
 import SortAccordion from "../SortAccordion/SortAccordion";
 import * as Styled from "./TopRatedTabPanel.styles";
 
+import { add } from "date-fns";
+
 const TopRatedTopPanel = () => {
   const [loading, setLoading] = useState(true);
   const [topRated, setTopRated] = useState([]);
@@ -60,10 +62,10 @@ const TopRatedTopPanel = () => {
           language: "ko",
           page: 1,
           sort_by: selected.id,
-          "air_date.lte": "2023-02-05",
+          "air_date.lte": add(new Date(), { months: 6 }),
           certification_country: "KR",
           ott_region: "KR",
-          "release_date.lte": "2023-02-05",
+          "release_date.lte": add(new Date(), { months: 6 }),
           show_me: 0,
           "vote_average.gte": 0,
           "vote_average.lte": 10,
@@ -94,12 +96,12 @@ const TopRatedTopPanel = () => {
         params: {
           api_key: process.env.REACT_APP_API_KEY,
           language: "ko",
-          page: 1,
+          page: sortedPage,
           sort_by: selected.id,
-          "air_date.lte": "2023-02-05",
+          "air_date.lte": add(new Date(), { months: 6 }),
           certification_country: "KR",
           ott_region: "KR",
-          "release_date.lte": "2023-02-05",
+          "release_date.lte": add(new Date(), { months: 6 }),
           show_me: 0,
           "vote_average.gte": 0,
           "vote_average.lte": 10,

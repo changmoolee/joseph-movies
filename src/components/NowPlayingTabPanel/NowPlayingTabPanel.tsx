@@ -5,6 +5,7 @@ import MovieContents from "../MovieContents/MovieContents";
 import SkeletonContents from "../SkeletonContents/SkeletonContents";
 import SortAccordion from "../SortAccordion/SortAccordion";
 import * as Styled from "./NowPlayingTabPanel.styles";
+import { add, sub } from "date-fns";
 
 const NowPlayingTopPanel = () => {
   const [loading, setLoading] = useState(true);
@@ -62,11 +63,11 @@ const NowPlayingTopPanel = () => {
           language: "ko",
           page: 1,
           sort_by: selected.id,
-          "air_date.lte": "2023-02-05",
+          "air_date.lte": add(new Date(), { months: 6 }),
           certification_country: "KR",
           ott_region: "KR",
-          "release_date.gte": "2022-06-29",
-          "release_date.lte": "2023-08-10",
+          "release_date.gte": sub(new Date(), { weeks: 5 }),
+          "release_date.lte": add(new Date(), { days: 4 }),
           show_me: 0,
           "vote_average.gte": 0,
           "vote_average.lte": 10,
@@ -99,11 +100,11 @@ const NowPlayingTopPanel = () => {
           language: "ko",
           page: sortedPage,
           sort_by: selected.id,
-          "air_date.lte": "2023-02-05",
+          "air_date.lte": add(new Date(), { months: 6 }),
           certification_country: "KR",
           ott_region: "KR",
-          "release_date.gte": "2022-06-29",
-          "release_date.lte": "2023-08-31",
+          "release_date.gte": sub(new Date(), { weeks: 5 }),
+          "release_date.lte": add(new Date(), { days: 4 }),
           show_me: 0,
           "vote_average.gte": 0,
           "vote_average.lte": 10,

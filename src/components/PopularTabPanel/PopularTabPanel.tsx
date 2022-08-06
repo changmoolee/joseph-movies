@@ -5,6 +5,7 @@ import MovieContents from "../MovieContents/MovieContents";
 import SkeletonContents from "../SkeletonContents/SkeletonContents";
 import SortAccordion from "../SortAccordion/SortAccordion";
 import * as Styled from "./PopularTabPanel.styles";
+import { add } from "date-fns";
 
 const PopularTopPanel = () => {
   const [loading, setLoading] = useState(true);
@@ -63,10 +64,10 @@ const PopularTopPanel = () => {
           language: "ko",
           page: 1,
           sort_by: selected.id,
-          "air_date.lte": "2023-02-05",
+          "air_date.lte": add(new Date(), { months: 6 }),
           certification_country: "KR",
           ott_region: "KR",
-          "release_date.lte": "2023-02-05",
+          "release_date.lte": add(new Date(), { months: 6 }),
           show_me: 0,
           "vote_average.gte": 0,
           "vote_average.lte": 10,
@@ -98,9 +99,9 @@ const PopularTopPanel = () => {
           language: "ko",
           page: sortedPage,
           sort_by: selected.id,
-          "air_date.lte": "2023-02-05",
+          "air_date.lte": add(new Date(), { months: 6 }),
           certification_country: "KR",
-          "release_date.lte": "2023-02-05",
+          "release_date.lte": add(new Date(), { months: 6 }),
           "vote_average.gte": 0,
           "vote_average.lte": 10,
           "with_runtime.lte": 400,

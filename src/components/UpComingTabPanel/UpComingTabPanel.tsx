@@ -5,6 +5,7 @@ import MovieContents from "../MovieContents/MovieContents";
 import SkeletonContents from "../SkeletonContents/SkeletonContents";
 import SortAccordion from "../SortAccordion/SortAccordion";
 import * as Styled from "./UpComingTabPanel.styles";
+import { add } from "date-fns";
 
 const UpComingTopPanel = () => {
   const [loading, setLoading] = useState(true);
@@ -60,11 +61,11 @@ const UpComingTopPanel = () => {
           language: "ko",
           page: 1,
           sort_by: selected.id,
-          "air_date.lte": "2023-02-05",
+          "air_date.lte": add(new Date(), { months: 6 }),
           certification_country: "KR",
           ott_region: "KR",
-          "release_date.gte": "2022-08-10",
-          "release_date.lte": "2022-08-31",
+          "release_date.gte": add(new Date(), { days: 4 }),
+          "release_date.lte": add(new Date(), { weeks: 3 }),
           show_me: 0,
           "vote_average.gte": 0,
           "vote_average.lte": 10,
@@ -95,13 +96,13 @@ const UpComingTopPanel = () => {
         params: {
           api_key: process.env.REACT_APP_API_KEY,
           language: "ko",
-          page: 1,
+          page: sortedPage,
           sort_by: selected.id,
-          "air_date.lte": "2023-02-05",
+          "air_date.lte": add(new Date(), { months: 6 }),
           certification_country: "KR",
           ott_region: "KR",
-          "release_date.gte": "2022-08-10",
-          "release_date.lte": "2022-08-31",
+          "release_date.gte": add(new Date(), { days: 4 }),
+          "release_date.lte": add(new Date(), { weeks: 3 }),
           show_me: 0,
           "vote_average.gte": 0,
           "vote_average.lte": 10,
