@@ -4,12 +4,16 @@ import { Button } from "joseph-ui-kit";
 import MovieContents from "../MovieContents/MovieContents";
 import SkeletonContents from "../SkeletonContents/SkeletonContents";
 import SortAccordion from "../SortAccordion/SortAccordion";
-import * as Styled from "./PopularTabPanel.styles";
-import { add } from "date-fns";
+import * as Styled from "./PanelComponent.styles";
 
-const PopularTopPanel = () => {
+const PanelComponent = ({
+  data,
+  setData,
+  firstRequestConfig,
+  sortedRequestConfig,
+  moreSortedRequestConfig,
+}: WithSubscriptionProps) => {
   const [loading, setLoading] = useState(true);
-  const [popular, setPopular] = useState([]);
   const [page, setPage] = useState(1);
 
   const [sortedMovies, setSortedMovies] = useState([]);
@@ -32,18 +36,9 @@ const PopularTopPanel = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios({
-      method: "get",
-      baseURL: "https://api.themoviedb.org/3",
-      url: "movie/popular",
-      params: {
-        api_key: process.env.REACT_APP_API_KEY,
-        language: "ko",
-        page: page,
-      },
-    })
+    axios(firstRequestConfig(page))
       .then((res) => {
-        setPopular((popular) => popular.concat(res.data.results));
+        setData((data: any) => data.concat(res.data.results));
       })
       .then(() => setLoading(false))
       .catch((err) => console.log(err));
@@ -55,28 +50,9 @@ const PopularTopPanel = () => {
       setLoading(true);
       setSortedMovies([]);
       setSortedPage(1);
-      axios({
-        method: "get",
-        baseURL: "https://api.themoviedb.org/3",
-        url: "discover/movie",
-        params: {
-          api_key: process.env.REACT_APP_API_KEY,
-          language: "ko",
-          page: 1,
-          sort_by: selected.id,
-          "air_date.lte": add(new Date(), { months: 6 }),
-          certification_country: "KR",
-          ott_region: "KR",
-          "release_date.lte": add(new Date(), { months: 6 }),
-          show_me: 0,
-          "vote_average.gte": 0,
-          "vote_average.lte": 10,
-          "with_runtime.gte": 0,
-          "with_runtime.lte": 400,
-        },
-      })
+      axios(sortedRequestConfig(selected))
         .then((res) => {
-          setSortedMovies((popular) => popular.concat(res.data.results));
+          setSortedMovies((data) => data.concat(res.data.results));
         })
         .then(() => {
           setLoading(false);
@@ -90,25 +66,9 @@ const PopularTopPanel = () => {
   useEffect(() => {
     if (sortedPage > 1) {
       setLoading(true);
-      axios({
-        method: "get",
-        baseURL: "https://api.themoviedb.org/3",
-        url: "discover/movie",
-        params: {
-          api_key: process.env.REACT_APP_API_KEY,
-          language: "ko",
-          page: sortedPage,
-          sort_by: selected.id,
-          "air_date.lte": add(new Date(), { months: 6 }),
-          certification_country: "KR",
-          "release_date.lte": add(new Date(), { months: 6 }),
-          "vote_average.gte": 0,
-          "vote_average.lte": 10,
-          "with_runtime.lte": 400,
-        },
-      })
+      axios(moreSortedRequestConfig(selected, sortedPage))
         .then((res) => {
-          setSortedMovies((popular) => popular.concat(res.data.results));
+          setSortedMovies((data) => data.concat(res.data.results));
         })
         .then(() => {
           setLoading(false);
@@ -125,8 +85,8 @@ const PopularTopPanel = () => {
   ) : sortedMovies.length === 0 ? (
     <>
       <SortAccordion setSelected={setSelected} />
-      <MovieContents data={popular} />
-      {popular.length >= 20 * page ? (
+      <MovieContents data={data} />
+      {data.length >= 20 * page ? (
         <Styled.ButtonContainer>
           <Button name="더보기" padding="10px 70px" onClick={morePage} />
         </Styled.ButtonContainer>
@@ -145,4 +105,72 @@ const PopularTopPanel = () => {
   );
 };
 
-export default PopularTopPanel;
+export default PanelComponent;
+
+interface WithSubscriptionProps {
+  data: any;
+  setData: any;
+  firstRequestConfig: (page: number) => {
+    method: string;
+    baseURL: string;
+    url: string;
+    params: {
+      api_key: string | undefined;
+      language: string;
+      page: number;
+    };
+  };
+  sortedRequestConfig: (selected: {
+    id: number | string;
+    value: number | string;
+  }) => {
+    method: string;
+    baseURL: string;
+    url: string;
+    params: {
+      api_key: string | undefined;
+      language: string;
+      page: number;
+      sort_by: string | number;
+      "air_date.lte": Date;
+      certification_country: string;
+      ott_region?: string;
+      "release_date.gte"?: Date | string;
+      "release_date.lte"?: Date | string;
+      show_me?: number;
+      "vote_average.gte"?: number;
+      "vote_average.lte"?: number;
+      with_release_type?: number;
+      "with_runtime.gte"?: number;
+      "with_runtime.lte"?: number;
+    };
+  };
+  moreSortedRequestConfig: (
+    selected: {
+      id: number | string;
+      value: number | string;
+    },
+    sortedPage: number
+  ) => {
+    method: string;
+    baseURL: string;
+    url: string;
+    params: {
+      api_key: string | undefined;
+      language: string;
+      page: number;
+      sort_by: string | number;
+      "air_date.lte": Date;
+      certification_country: string;
+      ott_region?: string;
+      "release_date.gte"?: Date;
+      "release_date.lte"?: Date;
+      show_me?: number;
+      "vote_average.gte"?: number;
+      "vote_average.lte"?: number;
+      with_release_type?: number;
+      "with_runtime.gte"?: number;
+      "with_runtime.lte"?: number;
+    };
+  };
+}
