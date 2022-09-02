@@ -23,16 +23,37 @@ https://www.themoviedb.org/ 에서 가입 및 로그인 후, 설정에서 API탭
 <img src="https://img.shields.io/badge/styled-components-DB7093?style=flat-square&logo=styled-components&logoColor=white"/></a><br><br>
 
 ## 개요
-
-원하는 영화 정보를 찾고 검색하세요!
+#### TMDB의 Api를 이용하여 만든 영화 정보 검색사이트입니다.<br>
+#### 영화의 정보들을 확인하고, 영화 이름을 검색하여 결과를 확인하세요!<br><br>
+- TMDB Api 소개 : https://developers.themoviedb.org/3/getting-started/introduction
 <br><br>
 
-## 기능
+## 소개
 
-### 분류된 영화 정보
-인기 있는 영화, 현재 상영중인 영화 등 원하는 정보의 탭을 눌러 실시간 영화 정보를 얻을 수 있습니다.
+### 반응형 웹사이트
+`joseph-movie`는 반응형 웹사이트로 제작되었습니다.<br>
+모바일, 데스크탑 등 다양한 디스플레이로 확인 가능합니다.<br><br>
+
+#### 모바일 환경
+
+<img alt="모바일" src="https://user-images.githubusercontent.com/84559872/188114745-2cc21e7b-05d3-4b7f-89ee-c4dc2ea07e1e.png" width="30%" height="30%"/>
+
 <br><br>
 
+
+#### 데스크탑 환경
+<img alt="모바일" src="https://user-images.githubusercontent.com/84559872/188114652-a395d080-d842-4ab7-8eb9-ad748fb96456.png" width="100%" height="30%"/>
+
+<br><br>
+---
+### 분류된 영화 정보 
+인기 있는 영화, 현재 상영중인 영화 등 원하는 정보의 탭을 눌러 영화 정보를 얻을 수 있습니다.<br><br>
+![image](https://user-images.githubusercontent.com/84559872/188105269-d48d9d79-bc28-478b-a307-60fbfd0085ca.png)
+
+<br><br>
+---
 ### 영화 이름 검색
-찾고 싶은 영화의 이름을 검색하여 찾아 볼 수 있습니다.
+찾고 싶은 영화의 이름을 검색하여 결과를 확인할 수 있습니다.<br><br>
+![image](https://user-images.githubusercontent.com/84559872/188105345-07f40039-7a73-4c58-9ca5-af23c1ca4aea.png)
+
 <br><br>
