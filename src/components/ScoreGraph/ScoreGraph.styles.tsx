@@ -1,30 +1,11 @@
-import React from "react";
 import styled from "styled-components";
 
-const ScoreGraph = ({ vote_average }: any) => {
-  const votePercent = Math.round(vote_average * 10);
-
-  return (
-    <Container>
-      <OuterCircle votePercent={votePercent}>
-        <InnerCircle>
-          {votePercent}
-          <span>%</span>
-        </InnerCircle>
-      </OuterCircle>
-      <Text>회원 점수</Text>
-    </Container>
-  );
-};
-
-export default ScoreGraph;
-
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   align-items: center;
 `;
 
-const OuterCircle = styled.div<{ votePercent: number }>`
+export const OuterCircle = styled.div<{ votePercent: number }>`
   width: 50px;
   height: 50px;
   display: flex;
@@ -45,7 +26,7 @@ const OuterCircle = styled.div<{ votePercent: number }>`
   )`};
 `;
 
-const InnerCircle = styled.div`
+export const InnerCircle = styled.div`
   width: 40px;
   height: 40px;
   display: flex;
@@ -59,6 +40,6 @@ const InnerCircle = styled.div`
   }
 `;
 
-const Text = styled.span`
+export const Text = styled.span`
   margin: 5px;
 `;

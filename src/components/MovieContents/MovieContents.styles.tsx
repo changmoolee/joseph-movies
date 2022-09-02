@@ -1,37 +1,12 @@
-import React from "react";
 import styled from "styled-components";
-import { SkeletonUI } from "joseph-ui-kit";
+import { BodyStyles } from "joseph-ui-kit";
 
-const SkeletonContents = () => {
-  const dummydata = Array(20).fill("");
-
-  return (
-    <Container>
-      <GridMovieImages>
-        {dummydata.map((_, index) => (
-          <MovieImageContainer key={index}>
-            <SkeletonUI>
-              <MovieImage />
-            </SkeletonUI>
-            <SkeletonUI>
-              <MovieTitle />
-            </SkeletonUI>
-          </MovieImageContainer>
-        ))}
-      </GridMovieImages>
-    </Container>
-  );
-};
-
-export default SkeletonContents;
-
-const Container = styled.div`
-  height: 100%;
+export const Container = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
 `;
 
-const GridMovieImages = styled.div`
+export const GridMovieImages = styled.div`
   width: 100%;
   display: grid;
   justify-items: center;
@@ -56,25 +31,43 @@ const GridMovieImages = styled.div`
   }
 `;
 
-const MovieImageContainer = styled.div`
+export const MovieImageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
 `;
 
-const MovieImage = styled.div`
+export const MovieImage = styled.img`
   width: 150px;
   height: 225px;
+  object-fit: cover;
   @media screen and (max-width: 320px) {
     width: 120px;
     height: 180px;
   }
 `;
 
-const MovieTitle = styled.div`
+export const NullImage = styled.div`
+  width: 150px;
+  height: 225px;
+  background-image: url("https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-color: #dbdbdb;
+  cursor: pointer;
+  @media screen and (max-width: 320px) {
+    width: 120px;
+    height: 180px;
+  }
+`;
+
+export const MovieTitle = styled.div`
+  ${BodyStyles.external.bodyCompact02}
   width: 140px;
-  height: 16px;
   margin-top: 10px;
+  text-align: center;
   @media screen and (max-width: 320px) {
     width: 100px;
   }

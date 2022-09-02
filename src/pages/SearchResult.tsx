@@ -3,11 +3,11 @@ import styled from "styled-components";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { SkeletonUI, Button, FixedHeadingStyles } from "joseph-ui-kit";
-import Header from "../components/Header";
-import SearchBox from "../components/SearchBox";
-import SkeletonContents from "../components/SkeletonContents";
-import Contents from "../components/Contents";
-import Footer from "../components/Footer";
+import Header from "../components/Header/Header";
+import SearchBox from "../components/SearchBox/SearchBox";
+import SkeletonContents from "../components/SkeletonContents/SkeletonContents";
+import MovieContents from "../components/MovieContents/MovieContents";
+import Footer from "../components/Footer/Footer";
 
 const SearchResult = () => {
   const { keyword } = useParams();
@@ -51,21 +51,26 @@ const SearchResult = () => {
       <Header />
       <SearchBox />
       {loading ? (
-        <ResultText>
-          <SkeletonUI>
-            <div style={{ width: "100px", height: "16px" }} />
-          </SkeletonUI>
-          <SkeletonUI>
-            <div style={{ width: "100px", height: "16px" }} />
-          </SkeletonUI>
-        </ResultText>
+        <>
+          <ResultText>
+            <SkeletonUI>
+              <div style={{ width: "100px", height: "16px" }} />
+            </SkeletonUI>
+            <SkeletonUI>
+              <div style={{ width: "100px", height: "16px" }} />
+            </SkeletonUI>
+          </ResultText>
+          <SkeletonContents />
+        </>
       ) : (
-        <ResultText>
-          <span style={{ fontStyle: "italic" }}>"{keyword}"</span> 검색 결과
-          &nbsp;{searchResult.length}건의 영화
-        </ResultText>
+        <>
+          <ResultText>
+            <span style={{ fontStyle: "italic" }}>"{keyword}"</span> 검색 결과
+            &nbsp;{searchResult.length}건의 영화
+          </ResultText>
+          <MovieContents data={searchResult} />
+        </>
       )}
-      {loading ? <SkeletonContents /> : <Contents data={searchResult} />}
       {searchResult.length >= 20 * page ? (
         <ButtonContainer>
           <Button name="더보기" padding="10px 70px" onClick={morePage} />
