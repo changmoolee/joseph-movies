@@ -24,6 +24,7 @@ https://www.themoviedb.org/ 에서 가입 및 로그인 후, 설정에서 API탭
 
 ## 개요
 #### TMDB의 Api를 이용하여 만든 영화 정보 검색사이트입니다.<br>
+#### 자체 제작한 ui-kit인 `joseph-ui-kit` 패키지의 UI들을 활용하여 사이트를 완성했습니다.<br>
 #### 영화의 정보들을 확인하고, 영화 이름을 검색하여 결과를 확인하세요!<br><br>
 - TMDB Api 소개 : https://developers.themoviedb.org/3/getting-started/introduction
 <br><br>
