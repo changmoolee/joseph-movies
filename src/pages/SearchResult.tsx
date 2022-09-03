@@ -84,10 +84,10 @@ const SearchResult = () => {
 export default SearchResult;
 
 const ResultText = styled.div`
-  ${FixedHeadingStyles.external.heading01}
+  ${FixedHeadingStyles.heading01}
   margin: 20px;
   @media screen and (min-width: 800px) {
-    ${FixedHeadingStyles.external.heading03}
+    ${FixedHeadingStyles.heading03}
   }
 `;
 

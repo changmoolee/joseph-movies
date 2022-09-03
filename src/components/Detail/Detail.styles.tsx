@@ -55,7 +55,7 @@ export const DefaultStyle = `
 `;
 
 export const Title = styled.div`
-  ${DefaultStyle}/* ${FixedHeadingStyles.external.heading04} */
+  ${DefaultStyle}/* ${FixedHeadingStyles.heading04} */
 `;
 
 export const InfoBox = styled.div`
@@ -70,22 +70,22 @@ export const InfoBox = styled.div`
 
 export const GenreContainer = styled.div`
   ${DefaultStyle}
-  ${BodyStyles.external.bodyCompact02}
+  ${BodyStyles.bodyCompact02}
 `;
 
 export const Tagline = styled.div`
   ${DefaultStyle}
-  ${FixedHeadingStyles.external.heading02}
+  ${FixedHeadingStyles.heading02}
   color: gray;
   font-style: italic;
 `;
 export const Overview = styled.div`
   ${DefaultStyle}
-  ${FixedHeadingStyles.external.heading03}
+  ${FixedHeadingStyles.heading03}
   text-align: left;
 `;
 
 export const Paragraph = styled.p`
   ${DefaultStyle}
-  ${BodyStyles.external.body02}
+  ${BodyStyles.body02}
 `;
