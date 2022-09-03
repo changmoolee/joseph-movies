@@ -23,17 +23,17 @@ export const Introduction = styled.div`
 `;
 
 export const FirstHeading = styled.div`
-  ${FixedHeadingStyles.external.heading03}
+  ${FixedHeadingStyles.heading03}
   color: white;
   @media screen and (min-width: 800px) {
-    ${FixedHeadingStyles.external.heading05}
+    ${FixedHeadingStyles.heading05}
   }
 `;
 export const SecondHeading = styled.div`
-  ${FixedHeadingStyles.external.heading03}
+  ${FixedHeadingStyles.heading03}
   color: white;
   @media screen and (min-width: 800px) {
-    ${FixedHeadingStyles.external.heading04}
+    ${FixedHeadingStyles.heading04}
   }
 `;
 

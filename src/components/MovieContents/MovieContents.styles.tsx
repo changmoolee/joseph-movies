@@ -64,7 +64,7 @@ export const NullImage = styled.div`
 `;
 
 export const MovieTitle = styled.div`
-  ${BodyStyles.external.bodyCompact02}
+  ${BodyStyles.bodyCompact02}
   width: 140px;
   margin-top: 10px;
   text-align: center;
