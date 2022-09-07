@@ -5,10 +5,10 @@ import * as Styled from "./Footer.styles";
 const Footer = () => {
   return (
     <Styled.Container>
-      <Styled.GitHubAnchor href="https://github.com/changmoolee?tab=repositories">
+      <Styled.GitHubAnchor href="https://github.com/changmoolee/joseph-movies">
         <Styled.LogoBox>
           <GithubLogo />
-          changmoolee
+          joseph-movies
         </Styled.LogoBox>
       </Styled.GitHubAnchor>
     </Styled.Container>
