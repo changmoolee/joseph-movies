@@ -53,8 +53,9 @@ const Detail = ({ movie_id }: DetailProps) => {
         <Styled.NullImage />
       ) : (
         <Styled.MovieImage
-          src={`https://image.tmdb.org/t/p/w200/${detail?.poster_path}`}
           alt="movie poster image"
+          src={`https://image.tmdb.org/t/p/w200/${detail?.poster_path}`}
+          referrerPolicy="no-referrer"
         />
       )}
       <Styled.Description>

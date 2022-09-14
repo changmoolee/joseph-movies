@@ -16,8 +16,9 @@ const MovieContents = ({ data }: any) => {
                 <Styled.NullImage />
               ) : (
                 <Styled.MovieImage
+                  alt="movie"
                   src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
-                  alt="popular movie"
+                  referrerPolicy="no-referrer"
                 />
               )}
               <Styled.MovieTitle>{movie.title}</Styled.MovieTitle>

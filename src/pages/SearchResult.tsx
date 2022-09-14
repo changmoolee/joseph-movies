@@ -11,13 +11,12 @@ import Footer from "../components/Footer/Footer";
 
 const SearchResult = () => {
   const { keyword } = useParams();
-
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchResult, setSearchResult] = useState([]);
   const [page, setPage] = useState(1);
 
   const morePage = () => {
-    setLoading(true);
+    setIsLoading(true);
     axios
       .get(
         `https://api.themoviedb.org/3/search/movie?api_key=${
@@ -29,20 +28,20 @@ const SearchResult = () => {
       )
       .then(() => {
         setPage((page) => page + 1);
-        setLoading(false);
+        setIsLoading(false);
       })
       .catch((err) => console.log(err));
   };
 
   useEffect(() => {
-    setLoading(true);
+    setIsLoading(true);
     setPage(1);
     axios
       .get(
         `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=ko&page=1&query=${keyword}`
       )
       .then((res) => setSearchResult(res.data.results))
-      .then(() => setLoading(false))
+      .then(() => setIsLoading(false))
       .catch((err) => console.log(err));
   }, [keyword]);
 
@@ -50,7 +49,7 @@ const SearchResult = () => {
     <>
       <Header />
       <SearchBox />
-      {loading ? (
+      {isLoading ? (
         <>
           <ResultText>
             <SkeletonUI>
